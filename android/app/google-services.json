@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "449079886414",
+    "project_id": "travel-app-ce43e",
+    "storage_bucket": "travel-app-ce43e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449079886414:android:8b6c09edc0a0a95998391f",
+        "android_client_info": {
+          "package_name": "com.example.tripster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449079886414-mj5fceasvpau6953dlb67v361qc4p6jd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGahvqzjdWsUcpO4gBR17rfASDjB8EPug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449079886414-mj5fceasvpau6953dlb67v361qc4p6jd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
