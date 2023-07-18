@@ -5,7 +5,7 @@ class Notify extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return const Material(
       child: Padding(
         padding: EdgeInsets.only(top: 70, right: 15, left: 15),
         child: Column(
@@ -36,14 +36,13 @@ class Notify extends StatelessWidget {
   }
 
   noteTemplate() {
-    return Container(
-      child: Row(
+    return  Row(
         children: [
           CircleAvatar(child: Image.asset('images/solar-ticket-linear.svg'),),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           
         ],
-      ),
+      
     );
   }
 }

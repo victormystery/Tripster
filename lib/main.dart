@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tripster/services/auth/login.dart';
+
 
 import 'screen/splashscreen.dart';
 import 'services/providers/helper.dart';
@@ -22,10 +24,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isSignedIn = false;
+
+  
+
   @override
   void initState() {
     super.initState();
     getUserLoggedInStatus();
+    
   }
 
   getUserLoggedInStatus() async {

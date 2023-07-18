@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _pages = [
       {
-        'page': const Home(),
+        'page': Home(),
         'title': 'Home',
       },
       {
@@ -31,11 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
         'title': 'My Trip',
       },
       {
-        'page': WishList(),
+        'page': const WishList(),
         'title': 'Wishlist',
       },
       {
-        'page': Profile(),
+        'page': const Profile(),
         'title': 'Wishlist',
       },
     ];
@@ -61,14 +61,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _pages[_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 1.0,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        showSelectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         onTap: _selectPage,
         backgroundColor: Colors.white,
         unselectedItemColor: Theme.of(context).colorScheme.primary,
         selectedItemColor: Theme.of(context).colorScheme.secondary,
         currentIndex: _selectedPageIndex,
-        items: [
+        iconSize: 24,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',

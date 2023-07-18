@@ -1,22 +1,24 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class Rating extends StatelessWidget {
   final double rating;
   final double size;
   int? ratingCount;
-  Rating({required this.rating, this.ratingCount, this.size = 15});
+  Rating({super.key, required this.rating, this.ratingCount, this.size = 15});
   @override
   Widget build(BuildContext context) {
-    List<Widget> _starList = [];
+    List<Widget> starList = [];
 
     int realNum = rating.floor();
     int partNum = ((rating - realNum) * 10).ceil();
 
     for (int i = 0; i < 5; i++) {
       if (i < realNum) {
-        _starList.add(Icon(Icons.star, color: Colors.amber, size: size));
+        starList.add(Icon(Icons.star, color: Colors.amber, size: size));
       } else if (i == realNum) {
-        _starList.add(SizedBox(
+        starList.add(SizedBox(
           height: size,
           width: size,
           child: Stack(
@@ -35,12 +37,12 @@ class Rating extends StatelessWidget {
           ),
         ));
       } else {
-        _starList.add(Icon(Icons.star, color: Colors.grey, size: size));
+        starList.add(Icon(Icons.star, color: Colors.grey, size: size));
       }
     }
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: _starList,
+      children: starList,
     );
   }
 }

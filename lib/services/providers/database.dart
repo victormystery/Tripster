@@ -7,6 +7,8 @@ class DatabaseService {
 
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection("user");
+  final CollectionReference placeCollection =
+      FirebaseFirestore.instance.collection('places');
 
   Future saveUserData(String email, String username) async {
     return await userCollection.doc(uid).set({
@@ -24,7 +26,5 @@ class DatabaseService {
     return snapshot;
   }
 
-  Future getPlaceData() async {
-    var placeData = FirebaseFirestore.instance.collection('place').doc().get();
-  }
+ 
 }

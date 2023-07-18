@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:tripster/screen/home/home.dart';
 import 'package:tripster/services/auth/login.dart';
@@ -138,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 56,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: const Color(0xfffb3b9c4),
+                              color: const Color(0xffb3b9c4),
                               width: 1.5,
                             ),
                             borderRadius: BorderRadius.circular(20),
@@ -148,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               'Create Account',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Color(0xfff354764),
+                                color: Color(0xff354764),
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

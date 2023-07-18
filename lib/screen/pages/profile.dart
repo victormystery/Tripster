@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:tripster/services/providers/auth_service.dart';
@@ -39,11 +41,11 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Material(
       child: Padding(
-        padding: EdgeInsets.only(top: 70, left: 15, right: 15),
+        padding: const EdgeInsets.only(top: 70, left: 15, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Your Profile',
               style: TextStyle(
                 color: Colors.black,
@@ -52,30 +54,30 @@ class _ProfileState extends State<Profile> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Row(
               children: [
-                CircleAvatar(radius: 32),
-                SizedBox(width: 15),
+                const CircleAvatar(radius: 32),
+                const SizedBox(width: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Hello, ${userName}'),
-                    SizedBox(height: 5),
-                    Text('Lagos, Nigeria')
+                    Text('Hello, $userName'),
+                    const SizedBox(height: 5),
+                    const Text('Lagos, Nigeria')
                   ],
                 )
               ],
             ),
-            SizedBox(height: 41),
+            const SizedBox(height: 41),
             personalInfo(),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             notify(),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             faq(),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             language(),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             logout(),
           ],
         ),
@@ -96,11 +98,11 @@ class _ProfileState extends State<Profile> {
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
+          side: const BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
@@ -131,11 +133,11 @@ class _ProfileState extends State<Profile> {
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
+          side: const BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
@@ -166,11 +168,11 @@ class _ProfileState extends State<Profile> {
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
+          side: const BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
@@ -201,11 +203,11 @@ class _ProfileState extends State<Profile> {
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
+          side: const BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
@@ -228,7 +230,7 @@ class _ProfileState extends State<Profile> {
       onTap: () {
         showModalBottomSheet(
           elevation: 1,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
           context: context,
           builder: (context) {
@@ -237,8 +239,8 @@ class _ProfileState extends State<Profile> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 10),
-                Center(
+                const SizedBox(height: 10),
+                const Center(
                   child: Text(
                     'Logout',
                     style: TextStyle(
@@ -249,17 +251,17 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
-                  'Are you sure you want to log out of ${userName}‘s account ',
-                  style: TextStyle(
+                  'Are you sure you want to log out of $userName‘s account ',
+                  style: const TextStyle(
                     color: Color(0xFF5D6B82),
                     fontSize: 14,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -284,13 +286,13 @@ class _ProfileState extends State<Profile> {
                           decoration: ShapeDecoration(
                             color: Colors.white,
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
+                              side: const BorderSide(
                                   width: 1,
                                   color: Color.fromARGB(255, 133, 135, 140)),
                               borderRadius: BorderRadius.circular(14),
                             ),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "Logout",
                               style: TextStyle(
@@ -302,7 +304,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           )),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -318,12 +320,12 @@ class _ProfileState extends State<Profile> {
                         ),
                         clipBehavior: Clip.antiAlias,
                         decoration: ShapeDecoration(
-                          color: Color(0xFF6B3FA0),
+                          color: const Color(0xFF6B3FA0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(14),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Cancel',
                             style: TextStyle(
@@ -338,7 +340,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             );
           },
@@ -356,11 +358,11 @@ class _ProfileState extends State<Profile> {
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
+            side: const BorderSide(width: 1, color: Color.fromARGB(255, 16, 16, 17)),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Text(
+        child: const Text(
           'Logout',
           style: TextStyle(
             color: Color(0xFF8460B0),

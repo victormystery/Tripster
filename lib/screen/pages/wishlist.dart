@@ -5,14 +5,14 @@ class WishList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _searchTrip = TextEditingController();
+   
     return Material(
       child: Padding(
-        padding: EdgeInsets.only(top: 70, left: 15, right: 15),
+        padding: const EdgeInsets.only(top: 70, left: 15, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Your Wishlist',
               style: TextStyle(
                 color: Colors.black,
@@ -21,20 +21,16 @@ class WishList extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 15),
-            Container(
-              decoration: const BoxDecoration(),
-              child: SearchBar(
-                shape: MaterialStatePropertyAll(LinearBorder(
-                  side: BorderSide(width: 1, style: BorderStyle.solid),
-                )),
-                controller: _searchTrip,
-                hintText: 'Search destination',
-                trailing: const [Icon(Icons.search)],
+            const SizedBox(height: 15),
+            Center(
+              heightFactor: 25,
+              child: Text(
+                'No Destination has been dded to your wishlist',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 15),
-            
+            const SizedBox(height: 15),
           ],
         ),
       ),
