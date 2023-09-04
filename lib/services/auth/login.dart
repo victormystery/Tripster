@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tripster/screen/home/home.dart';
 import 'package:tripster/services/auth/signup.dart';
 import 'package:tripster/services/providers/auth_service.dart';
-
+import 'package:uuid/uuid.dart';
 
 import '../../widget/auth/forgot.dart';
 import '../../widget/widget.dart';
@@ -192,12 +192,12 @@ class _LoginPageState extends State<LoginPage> {
           .loginUserWithEmailAndPassword(email, password)
           .then((value) async {
         if (value == true) {
-          await DatabaseService().getUserData(email);
+          await DatabaseService(uid: Uuid().v4()).getUserData(email);
 
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmailSf(email);
 
-          nextScreenReplace(context,  const HomeScreen());
+          nextScreenReplace(context, const HomeScreen());
         } else {
           showSnackbar(context, Colors.red, value);
           setState(() {

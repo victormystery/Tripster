@@ -30,11 +30,6 @@ class _HomeState extends State<Home> {
   }
 
   getUserData() async {
-    // await HelperFunctions.getUserEmailSf().then((value) {
-    //   setState(() {
-    //     email = value!;
-    //   });
-    // });
     await HelperFunctions.getUserNameSf().then((value) {
       setState(() {
         userName = value!;
@@ -56,9 +51,9 @@ class _HomeState extends State<Home> {
                   Row(
                     children: [
                       Text(
-                        userName,
+                        "Welcome, $userName",
                         style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w400),
+                            fontSize: 20, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
@@ -68,82 +63,82 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 17),
               const Text(
                 "Where do you want to explore today ?",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 15),
-              Container(
-                decoration: const BoxDecoration(),
-                child: SearchBar(
-                  controller: _search,
-                  hintText: 'Search destination',
-                  trailing: const [Icon(Icons.search)],
-                  onChanged: (value) {
-                    setState(() {
-                      name = value;
-                    });
-                  },
-                ),
-              ),
-              Container(
-                height: 100,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('places')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    return (snapshot.connectionState == ConnectionState.waiting)
-                        ? Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : ListView.builder(
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              var data = snapshot.data!.docs[index].data()
-                                  as Map<String, dynamic>;
+              // Container(
+              //   decoration: const BoxDecoration(),
+              //   child: SearchBar(
+              //     controller: _search,
+              //     hintText: 'Search destination',
+              //     trailing: const [Icon(Icons.search)],
+              //     onChanged: (value) {
+              //       setState(() {
+              //         name = value;
+              //       });
+              //     },
+              //   ),
+              // ),
+              // Container(
+              //   height: 300,
+              //   child: StreamBuilder<QuerySnapshot>(
+              //     stream: FirebaseFirestore.instance
+              //         .collection('places')
+              //         .snapshots(),
+              //     builder: (context, snapshot) {
+              //       return (snapshot.connectionState == ConnectionState.waiting)
+              //           ? Center(
+              //               child: CircularProgressIndicator(),
+              //             )
+              //           : ListView.builder(
+              //               itemCount: snapshot.data!.docs.length,
+              //               itemBuilder: (context, index) {
+              //                 var data = snapshot.data!.docs[index].data()
+              //                     as Map<String, dynamic>;
 
-                              if (name.isEmpty) {
-                                return Container();
-                              }
+              //                 if (name.isEmpty) {
+              //                   return Container();
+              //                 }
 
-                              if (data['name']
-                                  .toString()
-                                  .startsWith(name.toUpperCase())) {
-                                return ListTile(
-                                  title: Text(
-                                    data['name'],
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  subtitle: Text(
-                                    data['location'],
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  leading: CircleAvatar(
-                                    backgroundImage:
-                                        NetworkImage(data['imageUrl']),
-                                  ),
-                                );
-                              }
-                              return Container();
-                            },
-                          );
-                  },
-                ),
-              ),
+              //                 if (data['name']
+              //                     .toString()
+              //                     .startsWith(name.toUpperCase())) {
+              //                   return ListTile(
+              //                     title: Text(
+              //                       data['name'],
+              //                       maxLines: 1,
+              //                       overflow: TextOverflow.ellipsis,
+              //                       style: TextStyle(
+              //                         color: Colors.black54,
+              //                         fontSize: 16,
+              //                         fontWeight: FontWeight.bold,
+              //                       ),
+              //                     ),
+              //                     subtitle: Text(
+              //                       data['location'],
+              //                       maxLines: 1,
+              //                       overflow: TextOverflow.ellipsis,
+              //                       style: TextStyle(
+              //                         color: Colors.black54,
+              //                         fontSize: 16,
+              //                         fontWeight: FontWeight.bold,
+              //                       ),
+              //                     ),
+              //                     leading: CircleAvatar(
+              //                       backgroundImage:
+              //                           NetworkImage(data['imageUrl']),
+              //                     ),
+              //                   );
+              //                 }
+              //                 return Container();
+              //               },
+              //             );
+              //     },
+              //   ),
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -173,7 +168,6 @@ class _HomeState extends State<Home> {
               const SizedBox(height: 5),
               FavouriteCard(),
               const SizedBox(height: 10),
-             
               const PopularCard(),
             ],
           ),

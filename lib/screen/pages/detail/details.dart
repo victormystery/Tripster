@@ -3,24 +3,49 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:tripster/screen/pages/detail/second_detail.dart';
 
+import '../../../widget/widget.dart';
+import 'booking/booking.dart';
+
 class DetailScreen extends StatelessWidget {
   final QuerySnapshot data;
   final int index;
-  const DetailScreen({required this.data, required this.index, super.key});
+  DetailScreen({required this.index, required this.data, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: StreamBuilder<QuerySnapshot>(
+    return Scaffold(
+      body: Material(
+        child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('places')
               .where('isFavourite', isEqualTo: true)
               .snapshots(),
           builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            }
+
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
+
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return Text('No data available');
+            }
+
+            final data = snapshot.data!;
+            final imageUrl = data.docs[index]['imageUrl'];
+            final name = data.docs[index]['name'];
+            final location = data.docs[index]['location'];
+            final description = data.docs[index]['description'];
+            final rating = data.docs[index]['rating'].toString();
+            final price = data.docs[index]['price'].toString();
+
             return Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(snapshot.data!.docs[index]['imageUrl']),
+                  image: NetworkImage(imageUrl),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -38,7 +63,8 @@ class DetailScreen extends StatelessWidget {
                             },
                             child: const Icon(
                               Icons.arrow_back,
-                              color: Colors.white,
+                              color: Colors.yellow,
+                              size: 32,
                             )),
                         const Icon(
                           CommunityMaterialIcons.heart,
@@ -58,7 +84,7 @@ class DetailScreen extends StatelessWidget {
                           const Text(
                             'FAVOURITE PLACE',
                             style: TextStyle(
-                              color: Color(0xFFFAF6FA),
+                              color: Colors.orange,
                               fontSize: 14,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w700,
@@ -77,9 +103,9 @@ class DetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      snapshot.data!.docs[index]['name'],
+                      name,
                       style: TextStyle(
-                        color: Color(0xFFFAF6FA),
+                        color: Colors.orange,
                         fontSize: 39,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w700,
@@ -100,7 +126,7 @@ class DetailScreen extends StatelessWidget {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            snapshot.data!.docs[index]['location'],
+                            location,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -113,10 +139,10 @@ class DetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     Text(
-                      snapshot.data!.docs[index]['description'],
+                      description,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: 20,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
                       ),
@@ -143,7 +169,7 @@ class DetailScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 10),
                               Text(
-                                snapshot.data!.docs[index]['rating'].toString(),
+                                rating,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -161,7 +187,7 @@ class DetailScreen extends StatelessWidget {
                                   (context, animation, secondaryAnimation) {
                                 return SecondDetailPage(
                                   transitionAnimation: animation,
-                                  i:index,
+                                  i: index,
                                   data: snapshot.data!,
                                 );
                               },
@@ -184,14 +210,12 @@ class DetailScreen extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text:
-                                    '\₦${snapshot.data!.docs[index]['price'].toString()} ',
+                                text: '\₦$price ',
                                 style: TextStyle(
-                                  color:
-                                      const Color.fromARGB(255, 196, 162, 162),
+                                  color: Colors.white,
                                   fontSize: 18,
                                   fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               TextSpan(
@@ -207,7 +231,10 @@ class DetailScreen extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            nextScreen(
+                                context, BookingDetails(tripPrice: price));
+                          },
                           child: Container(
                             width: 180,
                             height: 54,
@@ -237,7 +264,9 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
             );
-          }),
+          },
+        ),
+      ),
     );
   }
 }

@@ -11,7 +11,7 @@ class PopularCard extends StatelessWidget {
     return Column(
       children: [
         const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               "Popular packages",
@@ -20,15 +20,6 @@ class PopularCard extends StatelessWidget {
                 fontSize: 20,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
-              ),
-            ),
-            Text(
-              "see all",
-              style: TextStyle(
-                color: Color.fromARGB(255, 3, 32, 86),
-                fontSize: 14,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w400,
               ),
             ),
           ],

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tripster/services/auth/login.dart';
 
-
 import 'screen/splashscreen.dart';
 import 'services/providers/helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DeviceOrientation.portraitUp;
+
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -25,13 +25,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool _isSignedIn = false;
 
-  
-
   @override
   void initState() {
     super.initState();
     getUserLoggedInStatus();
-    
   }
 
   getUserLoggedInStatus() async {

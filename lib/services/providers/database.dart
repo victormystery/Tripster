@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uuid/uuid.dart';
 
 class DatabaseService {
-  final String? uid;
+  String uid = Uuid().v4();
 
-  DatabaseService({this.uid});
+  DatabaseService({required this.uid});
 
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection("user");
@@ -25,6 +26,4 @@ class DatabaseService {
         await userCollection.where("email", isEqualTo: email).get();
     return snapshot;
   }
-
- 
 }

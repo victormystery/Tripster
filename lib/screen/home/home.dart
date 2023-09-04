@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'title': 'Home',
       },
       {
-        'page': const MyTrip(),
+        'page':  MyTrip( ),
         'title': 'My Trip',
       },
       {
